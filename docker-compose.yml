@@ -1,9 +1,7 @@
-version: '3'
 networks: 
   movie-network: 
-    external: true 
+    external: true
     name: 'mongo-network'
-
 
 services:
   api:
@@ -11,14 +9,14 @@ services:
     container_name: movies-api
     ports:
       - '9000:9000'
-
-environment:
+    environment:
       - MONGO_PASS=secret
       - MONGO_HOST=database
     networks:
       - movie-network
     depends_on:
       - database
+
   database:
     container_name: mongoDB
     image: mongo:8.0-rc
@@ -28,13 +26,14 @@ environment:
     networks:
       - movie-network
     volumes:
-      - moviedata:/data/db # UPDATED
+      - moviedata:/data/db
+
   mongo-express:
     container_name: express
     image: mongo-express:1.0-20-alpine3.19
-    restart: always # fixes MongoNetworkError caused by database not being ready when mongo-express starts.
+    restart: always
     ports:
-      - 8080:8081
+      - '8081:8081'
     environment:
       - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
       - ME_CONFIG_MONGODB_ADMINPASSWORD=secret
@@ -43,6 +42,7 @@ environment:
       - movie-network
     depends_on:
       - database
+
 volumes:
   moviedata:
-     name: "moviedata"
+    name: "moviedata"
