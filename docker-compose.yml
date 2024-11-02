@@ -1,6 +1,6 @@
 version: '3'
 networks: 
-  profile-network: 
+  movie-network: 
     external: true 
     name: 'mongo-network'
 
@@ -16,7 +16,7 @@ environment:
       - MONGO_PASS=secret
       - MONGO_HOST=database
     networks:
-      - profile-network
+      - movie-network
     depends_on:
       - database
   database:
@@ -26,9 +26,9 @@ environment:
       - MONGO_INITDB_ROOT_USERNAME=admin
       - MONGO_INITDB_ROOT_PASSWORD=secret
     networks:
-      - profile-network
+      - movie-network
     volumes:
-      - profiledata:/data/db # UPDATED
+      - moviedata:/data/db # UPDATED
   mongo-express:
     container_name: express
     image: mongo-express:1.0-20-alpine3.19
@@ -40,9 +40,9 @@ environment:
       - ME_CONFIG_MONGODB_ADMINPASSWORD=secret
       - ME_CONFIG_MONGODB_SERVER=database
     networks: 
-      - profile-network
+      - movie-network
     depends_on:
       - database
 volumes:
-  profiledata:
-     name: "profiledata"
+  moviedata:
+     name: "moviedata"
