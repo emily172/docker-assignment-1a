@@ -10,12 +10,14 @@ services:
     ports:
       - '9000:9000'
     environment:
-      - MONGO_PASS=secret
-      - MONGO_HOST=database
+      - MONGODB_URI=mongodb://admin:secret@database:27017
+      - REDIS_URI=redis://redis
+      - ENABLE_WRITING_HANDLERS=false
     networks:
       - movie-network
     depends_on:
       - database
+      - redis
 
   database:
     container_name: mongoDB
@@ -27,6 +29,12 @@ services:
       - movie-network
     volumes:
       - moviedata:/data/db
+
+  redis:
+    image: redis:alpine 
+    container_name: redis
+    networks: 
+      - movie-network
 
   mongo-express:
     container_name: express
