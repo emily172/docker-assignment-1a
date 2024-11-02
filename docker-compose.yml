@@ -1,7 +1,48 @@
-services:
+version: '3'
+networks: 
+  profile-network: 
+    external: true 
+    name: 'mongo-network'
 
+
+services:
   api:
     image: doconnor/movies-api:1.0
     container_name: movies-api
     ports:
       - '9000:9000'
+
+environment:
+      - MONGO_PASS=secret
+      - MONGO_HOST=database
+    networks:
+      - profile-network
+    depends_on:
+      - database
+  database:
+    container_name: mongoDB
+    image: mongo:8.0-rc
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=secret
+    networks:
+      - profile-network
+    volumes:
+      - profiledata:/data/db # UPDATED
+  mongo-express:
+    container_name: express
+    image: mongo-express:1.0-20-alpine3.19
+    restart: always # fixes MongoNetworkError caused by database not being ready when mongo-express starts.
+    ports:
+      - 8080:8081
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=secret
+      - ME_CONFIG_MONGODB_SERVER=database
+    networks: 
+      - profile-network
+    depends_on:
+      - database
+volumes:
+  profiledata:
+     name: "profiledata"
