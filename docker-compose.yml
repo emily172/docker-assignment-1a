@@ -1,12 +1,14 @@
 networks: 
-  movie-network: 
-    external: true
-    name: 'mongo-network'
+  mongodb-network: 
+  mongodb-ex-network:
+  redis-network:
+
 
 services:
   api:
     image: doconnor/movies-api:1.0
     container_name: movies-api
+    restart: always
     ports:
       - '9000:9000'
     environment:
@@ -14,7 +16,8 @@ services:
       - REDIS_URI=redis://redis
       - ENABLE_WRITING_HANDLERS=false
     networks:
-      - movie-network
+      - redis-network
+      - mongodb-network
     depends_on:
       - database
       - redis
@@ -26,7 +29,8 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=admin
       - MONGO_INITDB_ROOT_PASSWORD=secret
     networks:
-      - movie-network
+      - mongodb-network
+      - mongodb-ex-network
     volumes:
       - moviedata:/data/db
 
@@ -34,23 +38,24 @@ services:
     image: redis:alpine 
     container_name: redis
     networks: 
-      - movie-network
+      - redis-network
 
   mongo-express:
     container_name: express
     image: mongo-express:1.0-20-alpine3.19
     restart: always
     ports:
-      - '8081:8081'
+      - '8080:8081'
     environment:
       - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
       - ME_CONFIG_MONGODB_ADMINPASSWORD=secret
       - ME_CONFIG_MONGODB_SERVER=database
     networks: 
-      - movie-network
+      - redis-network
+      - mongodb-ex-network
     depends_on:
       - database
 
 volumes:
   moviedata:
-    name: "moviedata"
+
