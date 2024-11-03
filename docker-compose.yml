@@ -64,7 +64,6 @@ services:
       - ME_CONFIG_MONGODB_SERVER=database
     profiles:
       - dev
-      - prod
     networks: 
       - redis-network
       - mongodb-ex-network
