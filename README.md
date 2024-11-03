@@ -1,6 +1,6 @@
 ## Agile Software Practice - Assignment 1
 
-#** Note I have this applicaton done before the deadline, I could not upload this to moodle due to SETU's recent news
+# *Note I have this application done before the deadline, I could not upload this to moodle due to SETU's recent news
 
 ## *Showing my knowledge of using Docker by containerizing a multi-container application*
 
@@ -12,7 +12,7 @@ It shows how to intgrate all of the different parts altogether for the applicati
 ![alt text](<Agile_Software_Practice_Docker_1 (2).jpg>)
 
 The application contains four different types of containers 
-- ***Movies Application(doconner/movies-api:1.0)***
+- ***Movies Application(doconner/movies-api:10)***
    - This image is provided for movies web api and receives incoming http requests for a list of movies at http://localhost:9000/movies or a particular id of a movie at http://localhost:9000/movies/67277ed2ada94e64ce037c97, where the api stores the information.
 
 - ***MongoDB Database(mongo:8.0-rc)***
