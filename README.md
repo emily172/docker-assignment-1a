@@ -92,7 +92,8 @@ When you are running the docker compose up we are only working in one environmen
 
 
 <br>
-## *Resources*
+
+## *Resources
 Thanks to all of these resources I was fully able to complete this assignment and including the labs
 
 https://tutors.dev/course/agile-practice-setu-deise
