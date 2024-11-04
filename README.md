@@ -1,6 +1,6 @@
 ## Agile Software Practice - Assignment 1
 
-# *Note I have this application done before the deadline, I could not upload this to moodle due to SETU's recent news
+# **Note I have this application done before the deadline, I could not upload this to moodle due to SETU's recent news**
 
 ## *Showing my knowledge of using Docker by containerizing a multi-container application*
 
