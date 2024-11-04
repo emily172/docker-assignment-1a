@@ -90,7 +90,7 @@ Therefore, it vital that those containers in production are not seeded or deploy
 - Ran docker-compose --profile dev up and docker-compose --profile prod up one at time.
 - Tested and worked sucessful between the two profiles.
 - Removed prod profile from mongo-express.
-- Ran docker-compose --profile prod up and movies API, Redus server and MongoDB only ran omitting mongo-express.
+- Ran docker-compose --profile prod up and Movies API, Redus server and MongoDB only ran omitting mongo-express.
 - Checked docker-compose --profile dev up and everything ran smoothly all four containers.
 - Tested this a couple of times and everything was sucessful.
 
