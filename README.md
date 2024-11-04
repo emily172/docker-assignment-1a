@@ -2,18 +2,20 @@
 
 # **Note I have this application done before the deadline, I could not upload this to moodle due to SETU's recent news**
 
+## *Demo*
+
 ## *Showing my knowledge of using Docker by containerizing a multi-container application*
 
 This assignment demonstrates how to take a multicontainer application and containerzing it by writing up a docker compose file to 
 enable to start up a multi-container application to run and hooking them up together.
-It shows how to intgrate all of the different parts altogether for the application.
+It shows how to intergrate all of the different parts altogether for the application.
 
 ## *Applicaton Archtecture*
 ![alt text](<Agile_Software_Practice_Docker_1 (2).jpg>)
 
 The application contains four different types of containers 
 - ***Movies Application(doconner/movies-api:10)***
-   - This image is provided for movies web api and receives incoming http requests for a list of movies at http://localhost:9000/movies or a particular id of a movie at http://localhost:9000/movies/67277ed2ada94e64ce037c97, where the api stores the information.
+   - This image is provided for Movies Web API and receives incoming HTTP requests for a list of movies at http://localhost:9000/movies or a particular id of a movie at http://localhost:9000/movies/67277ed2ada94e64ce037c97, where the API stores the information.
 
 - ***MongoDB Database(mongo:8.0-rc)***
     - The movie information is stored in the MongoDB database.
@@ -30,7 +32,7 @@ The application contains four different types of containers
 ## *Tasks done for this assignment*
 
 
-### Step 1: Getting started
+### Step 1: Getting Started
 - Pulled the movies API image: docker pull doconnor/movies-api:1.0
 - Downloaded the archive and unzipped the file as the assignment folder.
 - Created a repo for the assignment and named it docker-assignment-1a.
@@ -38,29 +40,29 @@ The application contains four different types of containers
 - Tested the repo to check if it committed by modifying the README.md and it was a success.
 
 ### Step 2: Setting up the basic application
-- Merged the docker-compose.yml from docker-profile into the assignment folder.
-- File contained the two main containers MongoDB and Mongo-express combining with the initial movies api.
+- Merged the docker-compose.yml from docker-profile application repo into the assignment folder.
+- File contained the two main containers MongoDB and Mongo-express combining with the initial movies API.
 - Verifed that mongo and mongo-express worked by running docker-compose up --build.
 
-### Step 3: Environment variables, Configuring Redis Stack fully intgrated
-- Environment varibles added for
-      - MongoDb- URL server the database server: MONGODB_URI=mongodb://admin:secret@database:27017 
-      - Redis- Default URL server for caching: URI REDIS_URI=redis://redis
-      - API is configured to READ-ONLY-MODE from the MongoDB:ENABLE_WRITING_HANDLERS=false
-      - Movies API on port 9000:9000 as need to open on the host.
-- Configured Redis in the file by running docker-compose up --build everything loaded up at
+### Step 3: Environment variables, Configuring Redis Stack fully intergrated
+- Environment variables added for
+  - MongoDB- URL server the database server: MONGODB_URI=mongodb://admin:secret@database:27017 
+  - Redis- Default URL server for caching: URI REDIS_URI=redis://redis
+  - API is configured to READ-ONLY-MODE from the MongoDB:ENABLE_WRITING_HANDLERS=false
+  - Movies API on port 9000:9000 as needed to open on the host.
+- Configured Redis in the YAML file by running docker-compose up --build everything loaded up at
     - http://localhost:9000/ : Movies API pinging the client ensuring that they are connected.
-    - http://localhost:9000/movies : empty array of movies but verfied that connection worked.
+    - http://localhost:9000/movies : Empty array of movies but verfied that connection worked.
     - http://localhost:8081/: Manually created a database and added some movie data from seeding.json to test for the movie data to loadup.
-    - http://localhost:9000/movies : list of movies manually inputted loaded up. 
+    - http://localhost:9000/movies : List of movies manually inputted loaded up. 
     - http://localhost:9000/movies/67277edbada94e64ce037c98 : Took the id of the movie and it worked.
 - Killed the application by running docker-compose down.
 
-### Step 4: Container isolation
+### Step 4: Container Isolation
 - Formatted the file to configure each network container so that:
   - The Mongo-express app is not accessible from either the Redis or Movies API container.
-  - The MongoDB container is not accessible from the redis container.
-  - Therefore no communcation between those containers, no possible way to ping each other.
+  - The MongoDB container is not accessible from the Redis container.
+  - Therefore no communication between those containers, no possible way to ping each other.
     - mongodb-network:, mongodb-ex-network: and redis-network:
 
 ### Step 5: Database Seeding
@@ -69,16 +71,17 @@ The application contains four different types of containers
 - A database and collection was added and did a test following similar to **Step3**
 - Ran docker-compose up --build 
     - http://localhost:9000/ : Movies API pinging the client ensuring that they are connected.
-    - http://localhost:9000/movies : list of movies loaded up
-    - http://localhost:8081/: verified that the database and collection were added
+    - http://localhost:9000/movies : List of movies loaded up
+    - http://localhost:8081/ : Verified that the database and collection were added
     - http://localhost:9000/movies/67277e99ada94e64ce037c93 : Took the id of the movie and it worked.
 - Killed the application by running docker-compose down.
 
 ### Step 6: Development and Production Stack options
-When you are running the docker compose up we are only working in one environment and need divided multicontainer into production and developement environments.
-For development the application will remain the same as it has always has i.e what was implemented between ***Steps 1 to 5***. 
-In production we need to modfied so that when it composes up it only runs the Movies API, Redis server and MongoDB server **NOT** MONGO-EXPRESS and Mongo app with no seeding in the database. 
-These are only for developers who have access to these particular files and can Create, Read Update and Delete data. 
+When you are running the docker compose up we are only working in one environment and the multicontainer needs to be divided into development and production environments.
+- For development the application will remain the same as it has always been i.e what was implemented between ***Steps 1 to 5***. 
+- In production we need the YAML file to be modfied so that when it composes up it only runs the Movies API, Redis server and MongoDB server **NOT** MONGO-EXPRESS and Mongo App with no seeding in the database. 
+
+These are only for developers who have access to these particular files and can Create, Read, Update and Delete data known as **CRUD**. 
 As production is a live system and if these containers were deployed it would be exposing data to the public and cause many security breaches. 
 Therefore, it vital that those containers in production are not seeded or deployed in **ANY CONTEXT**.
 
@@ -88,7 +91,7 @@ Therefore, it vital that those containers in production are not seeded or deploy
 - Tested and worked sucessful between the two profiles.
 - Removed prod profile from mongo-express.
 - Ran docker-compose --profile prod up and movies API, Redus server and MongoDB only ran omitting mongo-express.
-- Checked docker-compose --profile dev up and everything ran smoothly all four containers .
+- Checked docker-compose --profile dev up and everything ran smoothly all four containers.
 - Tested this a couple of times and everything was sucessful.
 
 
