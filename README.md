@@ -42,7 +42,7 @@ The application contains four different types of containers
 ### Step 2: Setting up the basic application
 - Merged the docker-compose.yml from docker-profile application repo into the assignment folder.
 - File contained the two main containers MongoDB and Mongo-express combining with the initial movies API.
-- Verifed that mongo and mongo-express worked by running docker-compose up --build.
+- Verifed that mongo and mongo-express worked by running and building the container docker-compose up --build.
 
 ### Step 3: Environment variables, Configuring Redis Stack fully intergrated
 - Environment variables added for
