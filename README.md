@@ -21,7 +21,6 @@ The application contains four different types of containers
 - ***Mongo Express Web Application(mongo-express:1.0-20-alpine3.19)***
     - Controls the actions for the MongoDB as a front-end web application
 
-
 - ***Radis Server(redis:alpine)***
     - Provides two roles in the architecture, a high performance caching server that checks the response from the API for a particular movie and sends it to the MongoDB and returns back to the client and store it in the redis server. Secondly it acts as a rate limiter requester that returns the "get all movies" from the Database for short grace period of 3 to 4 minutes. Also when the request reaches to 11 it will limit to 10 at the upper limit. It knows when to stop responding and will reset the counter back to 0 to enable more requests to come in again and repeat the process.
 
@@ -57,14 +56,12 @@ The application contains four different types of containers
     - http://localhost:9000/movies/67277edbada94e64ce037c98 : Took the id of the movie and it worked.
 - Killed the application by running docker-compose down.
 
-
 ### Step 4: Container isolation
 - Formatted the file to configure each network container so that:
   - The Mongo-express app is not accessible from either the Redis or Movies API container.
   - The MongoDB container is not accessible from the redis container.
   - Therefore no communcation between those containers, no possible way to ping each other.
     - mongodb-network:, mongodb-ex-network: and redis-network:
-
 
 ### Step 5: Database Seeding
 - With the inital data set up, stack deployed and database seeding.
@@ -77,9 +74,13 @@ The application contains four different types of containers
     - http://localhost:9000/movies/67277e99ada94e64ce037c93 : Took the id of the movie and it worked.
 - Killed the application by running docker-compose down.
 
-
 ### Step 6: Development and Production Stack options
-When you are running the docker compose up we are only working in one environment and need divided multicontainer into production and developement environments.For development the application will remain the same as it has always has i.e what was implemented between ***Steps 1 to 5**. In production we need to modfied so that when it composes up it only runs the Movies API, Redis server and MongoDB server **NOT** MONGO-EXPRESS and Mongo app with no seeding in the database. These are only for developers who have access to these particular files and can Create, Read Update and Delete data. As production is a live system and if these containers were deployed it  would be exposing data to the public and cause many security breaches. Therefore, it vital that those containers in production are not seeded or deployed in ANY CONTEXT.
+When you are running the docker compose up we are only working in one environment and need divided multicontainer into production and developement environments.
+For development the application will remain the same as it has always has i.e what was implemented between ***Steps 1 to 5***. 
+In production we need to modfied so that when it composes up it only runs the Movies API, Redis server and MongoDB server **NOT** MONGO-EXPRESS and Mongo app with no seeding in the database. 
+These are only for developers who have access to these particular files and can Create, Read Update and Delete data. 
+As production is a live system and if these containers were deployed it would be exposing data to the public and cause many security breaches. 
+Therefore, it vital that those containers in production are not seeded or deployed in ***ANY CONTEXT**.
 
 - Updated the stack to interchange between dev and prod profiles.
 - Updated the .env file to switch between stacks.
