@@ -50,11 +50,11 @@ The application contains four different types of containers
       - API is configured to READ-ONLY-MODE from the MongoDB:ENABLE_WRITING_HANDLERS=false
       - Movies API on port 9000:9000 as need to open on the host.
 - Configured Redis in the file by running docker-compose up --build everything loaded up at
-      - http://localhost:9000/ : Movies API pinging the client ensuring that they are connected.
-      - http://localhost:9000/movies : empty array of movies but verfied that connection worked.
-      - http://localhost:8081/: Manually created a database and added some movie data from seeding.json to test for the movie data to loadup.
-      - http://localhost:9000/movies : list of movies manually inputted loaded up. 
-      - http://localhost:9000/movies/67277edbada94e64ce037c98 : Took the id of the movie and it worked.
+    - http://localhost:9000/ : Movies API pinging the client ensuring that they are connected.
+    - http://localhost:9000/movies : empty array of movies but verfied that connection worked.
+    - http://localhost:8081/: Manually created a database and added some movie data from seeding.json to test for the movie data to loadup.
+    - http://localhost:9000/movies : list of movies manually inputted loaded up. 
+    - http://localhost:9000/movies/67277edbada94e64ce037c98 : Took the id of the movie and it worked.
 - Killed the application by running docker-compose down.
 
 
@@ -66,19 +66,19 @@ The application contains four different types of containers
     - mongodb-network:, mongodb-ex-network: and redis-network:
 
 
-## Step 5: Database Seeding
+### Step 5: Database Seeding
 - With the inital data set up, stack deployed and database seeding.
 - Implemented the seeding for creating a database and adding the movies collection automatically.
 - A database and collection was added and did a test following similar to **Step3**
 - Ran docker-compose up --build 
-      - http://localhost:9000/ : Movies API pinging the client ensuring that they are connected.
-      - http://localhost:9000/movies : list of movies loaded up
-      - http://localhost:8081/: verified that the database and collection were added
-      - http://localhost:9000/movies/67277e99ada94e64ce037c93 : Took the id of the movie and it worked.
+    - http://localhost:9000/ : Movies API pinging the client ensuring that they are connected.
+    - http://localhost:9000/movies : list of movies loaded up
+    - http://localhost:8081/: verified that the database and collection were added
+    - http://localhost:9000/movies/67277e99ada94e64ce037c93 : Took the id of the movie and it worked.
 - Killed the application by running docker-compose down.
 
 
-## Step 6: Development and Production Stack options
+### Step 6: Development and Production Stack options
 When you are running the docker compose up we are only working in one environment and need divided multicontainer into production and developement environments.For development the application will remain the same as it has always has i.e what was implemented between ***Steps 1 to 5**. In production we need to modfied so that when it composes up it only runs the Movies API, Redis server and MongoDB server **NOT** MONGO-EXPRESS and Mongo app with no seeding in the database. These are only for developers who have access to these particular files and can Create, Read Update and Delete data. As production is a live system and if these containers were deployed it  would be exposing data to the public and cause many security breaches. Therefore, it vital that those containers in production are not seeded or deployed in ANY CONTEXT.
 
 - Updated the stack to interchange between dev and prod profiles.
