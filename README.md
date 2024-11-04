@@ -80,7 +80,7 @@ For development the application will remain the same as it has always has i.e wh
 In production we need to modfied so that when it composes up it only runs the Movies API, Redis server and MongoDB server **NOT** MONGO-EXPRESS and Mongo app with no seeding in the database. 
 These are only for developers who have access to these particular files and can Create, Read Update and Delete data. 
 As production is a live system and if these containers were deployed it would be exposing data to the public and cause many security breaches. 
-Therefore, it vital that those containers in production are not seeded or deployed in ***ANY CONTEXT**.
+Therefore, it vital that those containers in production are not seeded or deployed in **ANY CONTEXT**.
 
 - Updated the stack to interchange between dev and prod profiles.
 - Updated the .env file to switch between stacks.
