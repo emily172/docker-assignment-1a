@@ -1,7 +1,5 @@
 ## Agile Software Practice - Assignment 1
 
-# **Note I have this application done before the deadline, I could not upload this to moodle due to SETU's recent news**
-
 ## *Demo*
 __Name:_Emily Halley 20092335
 _Demo:_https://youtu.be/rrLJSsuHFqk
