@@ -36,7 +36,7 @@ services:
     volumes:
       - moviedata:/data/db
       - ./seeding.json:/docker-entrypoint-initdb.d/seeding.json
-    command: mongod --bind_ip_all --auth; mongoimport --host database --db tmdb_movies --authenticationDatabase admin --username admin --password secret --drop --jsonArray --file /docker-entrypoint-initdb.d/seeding.json
+    command: mongod --bind_ip_all --auth; mongo import --host database --db tmdb_movies --authenticationDatabase admin --username admin --password secret --drop --jsonArray --file /docker-entrypoint-initdb.d/seeding.json
     profiles:
       - dev
       - prod
