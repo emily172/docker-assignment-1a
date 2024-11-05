@@ -3,9 +3,11 @@
 # **Note I have this application done before the deadline, I could not upload this to moodle due to SETU's recent news**
 
 ## *Demo*
+__Name:_Emily Halley 20092335
+_Demo:_https://youtu.be/rrLJSsuHFqk
 
 ## *Showing my knowledge of using Docker by containerizing a multi-container application*
-
+This repository contains the containerization of the multi-container applicaton illustrated below.
 This assignment demonstrates how to take a multicontainer application and containerzing it by writing up a docker compose file to 
 enable to start up a multi-container application to run and hooking them up together.
 It shows how to intergrate all of the different parts altogether for the application.
@@ -76,7 +78,7 @@ The application contains four different types of containers
     - http://localhost:9000/movies/67277e99ada94e64ce037c93 : Took the id of the movie and it worked.
 - Killed the application by running docker-compose down.
 
-### Step 6: Development and Production Stack options
+### Step 6: Development and Production Stack options -> Multi-Stack
 When you are running the docker compose up we are only working in one environment and the multicontainer needs to be divided into development and production environments.
 - For development the application will remain the same as it has always been i.e what was implemented between ***Steps 1 to 5***. 
 - In production we need the YAML file to be modfied so that when it composes up it only runs the Movies API, Redis server and MongoDB server **NOT** MONGO-EXPRESS and Mongo App with no seeding in the database. 
