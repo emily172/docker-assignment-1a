@@ -6,6 +6,7 @@ _Demo:_https://youtu.be/rrLJSsuHFqk
 
 ## *Showing my knowledge of using Docker by containerizing a multi-container application*
 This repository contains the containerization of the multi-container applicaton illustrated below.
+arch.png
 This assignment demonstrates how to take a multicontainer application and containerzing it by writing up a docker compose file to 
 enable to start up a multi-container application to run and hooking them up together.
 It shows how to intergrate all of the different parts altogether for the application.
